@@ -11,7 +11,10 @@ import pytest
 
 from conda._vendor.auxlib.collection import AttrDict
 from conda._vendor.auxlib.ish import dals
-from conda._vendor.toolz.itertoolz import concat
+try:
+    from cytoolz.itertoolz import concat
+except ImportError:
+    from conda._vendor.toolz.itertoolz import concat
 from conda.base.constants import PathConflict
 from conda.base.context import context, reset_context
 from conda.common.compat import odict, iteritems

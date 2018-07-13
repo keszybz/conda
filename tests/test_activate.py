@@ -12,7 +12,10 @@ from uuid import uuid4
 
 from conda import CONDA_PACKAGE_ROOT
 from conda._vendor.auxlib.ish import dals
-from conda._vendor.toolz.itertoolz import concatv
+try:
+    from cytoolz.itertoolz import concatv
+except ImportError:
+    from conda._vendor.toolz.itertoolz import concatv
 from conda.activate import CmdExeActivator, CshActivator, FishActivator, PosixActivator, \
     PowershellActivator, XonshActivator, activator_map, main as activate_main, native_path_to_unix
 from conda.base.constants import ROOT_ENV_NAME

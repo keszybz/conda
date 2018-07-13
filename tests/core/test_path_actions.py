@@ -13,7 +13,10 @@ from uuid import uuid4
 import pytest
 
 from conda._vendor.auxlib.collection import AttrDict
-from conda._vendor.toolz.itertoolz import groupby
+try:
+    from cytoolz.itertoolz import groupby
+except ImportError:
+    from conda._vendor.toolz.itertoolz import groupby
 from conda.base.constants import PREFIX_MAGIC_FILE
 from conda.base.context import context, reset_context
 from conda.common.compat import PY2, on_win
